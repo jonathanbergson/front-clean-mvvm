@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { useDependencyInjectionInject } from '@/infra/DependencyInjectionContext/useDependencyInjectionContext';
-import { FormPersonModel } from '@/domain/FormPerson.model';
-import FormButtons from '@/components/FormButtons.vue';
-import FormField from '@/components/FormField.vue';
+import { ref } from "vue";
+import FormButtons from "@/components/FormButtons.vue";
+import FormField from "@/components/FormField.vue";
+import { FormPersonModel } from "@/domain/FormPerson.model";
+import { useDependencyInjectionInject } from "@/infra/DependencyInjectionContext/useDependencyInjectionContext";
 
-const di = useDependencyInjectionInject()
+const di = useDependencyInjectionInject();
 
-const formPerson = ref(new FormPersonModel())
-formPerson.value.register('confirmed', async (input) => {
-  formPerson.value.isLoading = true
-  await di?.createPersonUseCase.execute({ ...input, lero: '123' })
-  formPerson.value.isLoading = false
-})
+const formPerson = ref(new FormPersonModel());
+formPerson.value.register("confirmed", async (input) => {
+  formPerson.value.isLoading = true;
+  await di?.createPersonUseCase.execute({ ...input, lero: "123" });
+  formPerson.value.isLoading = false;
+});
 </script>
 
 <template>
@@ -20,8 +20,18 @@ formPerson.value.register('confirmed', async (input) => {
     <form @submit.prevent>
       <fieldset>
         <legend>Form Person:</legend>
-        <FormField v-model="formPerson.values.name" :errors="formPerson.errors.name" :disabled="formPerson.isLoading" placeholder="name" />
-        <FormField v-model="formPerson.values.document" :errors="formPerson.errors.document" :disabled="formPerson.isLoading" placeholder="document" />
+        <FormField
+          v-model="formPerson.values.name"
+          :errors="formPerson.errors.name"
+          :disabled="formPerson.isLoading"
+          placeholder="name"
+        />
+        <FormField
+          v-model="formPerson.values.document"
+          :errors="formPerson.errors.document"
+          :disabled="formPerson.isLoading"
+          placeholder="document"
+        />
         <FormButtons @confirm="formPerson.confirm()" :disabled="formPerson.isLoading" />
       </fieldset>
     </form>

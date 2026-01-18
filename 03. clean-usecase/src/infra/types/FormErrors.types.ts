@@ -1,1 +1,1 @@
-export type FormErrors<T extends string> = Record<T, string[]>
+export type FormErrors<T extends string> = Record<T, string[]>;

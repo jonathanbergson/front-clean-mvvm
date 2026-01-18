@@ -1,14 +1,14 @@
 {
   "name": "frontend-clean-usecase",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "fmt": "oxfmt",
-    "fmt:check": "oxfmt --check",
+    "fmt": "oxfmt --check",
+    "fmt:fix": "oxfmt",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix"
   },

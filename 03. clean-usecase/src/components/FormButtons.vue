@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { useAttrs } from 'vue';
+import { useAttrs } from "vue";
 
-const attrs = useAttrs()
-const emit = defineEmits(['confirm'])
+const attrs = useAttrs();
+const emit = defineEmits(["confirm"]);
 </script>
 
 <template>

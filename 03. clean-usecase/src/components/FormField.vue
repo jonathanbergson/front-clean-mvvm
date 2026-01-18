@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useAttrs } from 'vue'
+import { useAttrs } from "vue";
 
-const attrs = useAttrs()
-const model = defineModel({ default: '' })
-const { errors = [] } = defineProps<{ errors: string[] }>()
+const attrs = useAttrs();
+const model = defineModel({ default: "" });
+const { errors = [] } = defineProps<{ errors: string[] }>();
 </script>
 
 <template>

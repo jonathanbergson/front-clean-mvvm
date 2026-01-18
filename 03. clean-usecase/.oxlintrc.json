@@ -1,12 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "unicorn",
-    "typescript",
-    "oxc",
-    "import",
-    "vue",
-  ],
+  "plugins": ["unicorn", "typescript", "oxc", "import", "vue"],
   "categories": {},
   "rules": {
     "constructor-super": "warn",
