@@ -1,0 +1,6 @@
+- [ ] View dentro de outra view
+- [ ] Escrever testes unitários
+- [ ] Adicionar LIB RekaUI
+- [ ] Validação do fomulário deve ser reativa
+- [ ] Validação e reatividade deve ser compativel com yup e zod
+- [ ] Configurar lint e formater OXC
