@@ -1,17 +1,17 @@
 import { inject, provide, type InjectionKey } from "vue";
-import type { PersonGateway } from "@/infra/gateway/Person.gateway";
+import type { ProtocolGateway } from "@/infra/gateway/Protocol.gateway";
 import type { FetchHttpClient } from "@/infra/http/FetchHttpClient";
-import { CreatePersonUseCase } from "@/domain/CreatePerson.usecase";
+import { CreateProtocolUseCase } from "@/domain/CreateProtocol.usecase";
 
 type Context = {
   // Infra
   httpClient: FetchHttpClient;
 
   // Gateway
-  personGateway: PersonGateway;
+  protocolGateway: ProtocolGateway;
 
   // UseCase
-  createPersonUseCase: CreatePersonUseCase;
+  createProtocolUseCase: CreateProtocolUseCase;
 };
 
 const CONTEXT_KEY: InjectionKey<Context> = Symbol("DependencyInjectionContext");

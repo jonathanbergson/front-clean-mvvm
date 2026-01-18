@@ -1,7 +1,7 @@
 import { FormErrors } from "@/infra/types/FormErrors.types";
 import Observable from "@/infra/Observable";
 
-export class FormPersonModel extends Observable<ObservableEvents> {
+export class FormProtocolModel extends Observable<ObservableEvents> {
   isLoading = false;
 
   values: FormValues = {

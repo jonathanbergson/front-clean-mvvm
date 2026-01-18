@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-import { FakeCreateOutput, PersonGateway } from "@/infra/gateway/Person.gateway";
+import { FakeCreateOutput, ProtocolGateway } from "@/infra/gateway/Protocol.gateway";
 import { FetchHttpClient } from "@/infra/http/FetchHttpClient";
 import { useDependencyInjectionProvider } from "./useDependencyInjectionContext";
-import { CreatePersonUseCase } from "@/domain/CreatePerson.usecase";
+import { CreateProtocolUseCase } from "@/domain/CreateProtocol.usecase";
 import { FakeHttpClient } from "../http/FakeHttpClient";
 
 const httpClient = new FakeHttpClient(FakeCreateOutput);
 // const httpClient = new FetchHttpClient()
-const personGateway = new PersonGateway(httpClient);
-const createPersonUseCase = new CreatePersonUseCase(personGateway);
+const protocolGateway = new ProtocolGateway(httpClient);
+const createProtocolUseCase = new CreateProtocolUseCase(protocolGateway);
 
 useDependencyInjectionProvider({
   // Infra
   httpClient,
 
   // Gateway
-  personGateway,
+  protocolGateway,
 
   // UseCase
-  createPersonUseCase,
+  createProtocolUseCase,
 });
 </script>
 
