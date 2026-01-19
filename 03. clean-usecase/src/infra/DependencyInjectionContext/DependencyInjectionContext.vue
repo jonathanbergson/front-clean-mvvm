@@ -4,10 +4,17 @@ import { FetchHttpClient } from "@/infra/http/FetchHttpClient";
 import { useDependencyInjectionProvider } from "./useDependencyInjectionContext";
 import { CreateProtocolUseCase } from "@/domain/CreateProtocol.usecase";
 import { FakeHttpClient } from "../http/FakeHttpClient";
+import { FakePersonFindOutput, PersonGateway } from "../gateway/Person.gateway";
+import { SearchPersonUseCase } from "@/domain/SearchPerson.usecase";
 
-const httpClient = new FakeHttpClient(FakeCreateOutput);
-// const httpClient = new FetchHttpClient()
-const protocolGateway = new ProtocolGateway(httpClient);
+const httpClient = new FetchHttpClient();
+
+const personHttpClient = new FakeHttpClient(FakePersonFindOutput);
+const personGateway = new PersonGateway(personHttpClient);
+const searchPersonUseCase = new SearchPersonUseCase(personGateway);
+
+const protocolHttpClient = new FakeHttpClient(FakeCreateOutput);
+const protocolGateway = new ProtocolGateway(protocolHttpClient);
 const createProtocolUseCase = new CreateProtocolUseCase(protocolGateway);
 
 useDependencyInjectionProvider({
@@ -15,10 +22,12 @@ useDependencyInjectionProvider({
   httpClient,
 
   // Gateway
+  personGateway,
   protocolGateway,
 
   // UseCase
   createProtocolUseCase,
+  searchPersonUseCase,
 });
 </script>
 

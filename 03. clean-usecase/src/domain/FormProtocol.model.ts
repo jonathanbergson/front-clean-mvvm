@@ -2,36 +2,64 @@ import { FormErrors } from "@/infra/types/FormErrors.types";
 import Observable from "@/infra/Observable";
 
 export class FormProtocolModel extends Observable<ObservableEvents> {
-  isLoading = false;
-
-  values: FormValues = {
-    name: "",
-    email: "",
-    document: "",
-    password: "",
-  };
-
-  errors: FormErrors<Fields> = {
+  private _isLoading = false;
+  private _errors: FormErrors<Fields> = {
     name: [],
     email: [],
     document: [],
-    password: [],
+    presenter: [],
+    financialManager: [],
   };
+  private _values: FormValues = new Proxy<FormValues>(
+    {
+      name: "",
+      email: "",
+      document: "",
+      presenter: "",
+      financialManager: "",
+    },
+    {
+      set: (target, prop: keyof FormValues, value) => {
+        target[prop] = value;
+        this.validate();
+        return true;
+      },
+    },
+  );
 
-  validate() {
+  get isLoading() {
+    return this._isLoading;
+  }
+
+  get errors() {
+    return this._errors;
+  }
+
+  get values() {
+    return this._values;
+  }
+
+  private validate() {
     let isValid = true;
 
-    this.errors.name = [];
-    if (!this.values.name) this.errors.name.push("Nome obrigatorio");
-    if (this.values.name.length < 5) this.errors.name.push("Tamanho mínimo de 5 caracteres");
+    this._errors.name = [];
+    if (!this._values.name) this._errors.name.push("Nome obrigatorio");
+    if (this._values.name.length < 5) this._errors.name.push("Tamanho mínimo de 5 caracteres");
 
-    this.errors.document = [];
-    if (!this.values.document) this.errors.document.push("Documento obrigatorio");
-    if (this.values.document.length < 11)
-      this.errors.document.push("Tamanho mínimo de 11 caracteres");
+    this._errors.document = [];
+    if (!this._values.document) this._errors.document.push("Documento obrigatorio");
+    if (this._values.document.length < 11)
+      this._errors.document.push("Tamanho mínimo de 11 caracteres");
 
-    for (const key of Object.keys(this.errors) as Fields[]) {
-      if (this.errors[key].length) {
+    this._errors.presenter = [];
+    if (!this._values.presenter) this._errors.presenter.push("Requerente obrigatorio");
+
+    this._errors.financialManager = [];
+    if (!this._values.financialManager)
+      this._errors.financialManager.push("Gerente financeiro obrigatorio");
+
+    for (const key of Object.keys(this._errors) as Fields[]) {
+      if (this._errors[key].length) {
         isValid = false;
         break;
       }
@@ -42,8 +70,10 @@ export class FormProtocolModel extends Observable<ObservableEvents> {
 
   async confirm() {
     if (this.validate()) {
-      const input = this.values;
-      await this.notifyAll("confirmed", input);
+      const input = this._values;
+      this._isLoading = true;
+      await this.notifyAll("submit", input);
+      this._isLoading = false;
     }
   }
 }
@@ -52,11 +82,12 @@ type FormValues = {
   name: string;
   email: string;
   document: string;
-  password: string;
+  presenter: string;
+  financialManager: string;
 };
 
 type Fields = keyof FormValues;
 
 type ObservableEvents = {
-  confirmed: FormValues;
+  submit: FormValues;
 };

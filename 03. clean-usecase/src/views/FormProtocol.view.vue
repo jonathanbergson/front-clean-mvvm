@@ -1,17 +1,16 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import FormButtons from "@/components/FormButtons.vue";
-import FormField from "@/components/FormField.vue";
+import ButtonBase from "@/components/ButtonBase.vue";
+import InputBase from "@/components/InputBase.vue";
 import { FormProtocolModel } from "@/domain/FormProtocol.model";
-import { useDependencyInjectionInject } from "@/infra/DependencyInjectionContext/useDependencyInjectionContext";
+import { useDependencyInjectionInject } from "@/infra/DependencyInjectionContext";
+import FieldPersonView from "./FieldPerson.view.vue";
 
 const di = useDependencyInjectionInject();
 
 const formProtocol = ref(new FormProtocolModel());
-formProtocol.value.register("confirmed", async (input) => {
-  formProtocol.value.isLoading = true;
-  await di?.createProtocolUseCase.execute({ ...input, lero: "123" });
-  formProtocol.value.isLoading = false;
+formProtocol.value.register("submit", async (input) => {
+  di?.createProtocolUseCase.execute(input);
 });
 </script>
 
@@ -20,19 +19,43 @@ formProtocol.value.register("confirmed", async (input) => {
     <form @submit.prevent>
       <fieldset>
         <legend>Create protocol:</legend>
-        <FormField
+        <InputBase
           v-model="formProtocol.values.name"
           :errors="formProtocol.errors.name"
           :disabled="formProtocol.isLoading"
           placeholder="name"
         />
-        <FormField
+        <InputBase
           v-model="formProtocol.values.document"
           :errors="formProtocol.errors.document"
           :disabled="formProtocol.isLoading"
           placeholder="document"
         />
-        <FormButtons @confirm="formProtocol.confirm()" :disabled="formProtocol.isLoading" />
+
+        <hr />
+        <p>Presenter: {{ formProtocol.values.presenter }}</p>
+        <FieldPersonView
+          v-model="formProtocol.values.presenter"
+          :errors="formProtocol.errors.presenter"
+          type="Presenter"
+        />
+
+        <hr />
+        <p>Financial Manager: {{ formProtocol.values.financialManager }}</p>
+        <FieldPersonView
+          v-model="formProtocol.values.financialManager"
+          :errors="formProtocol.errors.financialManager"
+          type="Financial Manager"
+        />
+
+        <hr />
+        <ButtonBase
+          @click="formProtocol.confirm()"
+          :disabled="formProtocol.isLoading"
+          type="is-info"
+        >
+          Criar protocolo
+        </ButtonBase>
       </fieldset>
     </form>
   </div>

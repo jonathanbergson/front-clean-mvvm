@@ -10,12 +10,27 @@ export class ProtocolGateway implements IProtocolGateway {
   async create(input: ProtocolCreateInput): Promise<ProtocolCreateOutput> {
     const output = await this.httpClient.request<ProtocolCreateInput, ProtocolCreateOutput>({
       method: HttpMethods.POST,
-      url: "http://localhost:3000/Protocol",
+      url: "http://localhost:3000/protocol",
       body: input,
     });
     return output;
   }
 }
+
+export type ProtocolCreateInput = {
+  name: string;
+  email: string;
+  document: string;
+  financialManager: string;
+};
+
+export type ProtocolCreateOutput = {
+  id: string;
+  name: string;
+  email: string;
+  document: string;
+  financialManager: string;
+};
 
 export class FakeProtocolGateway implements IProtocolGateway {
   async create(): Promise<ProtocolCreateOutput> {
@@ -28,19 +43,5 @@ export const FakeCreateOutput: ProtocolCreateOutput = {
   name: "Jonathan Bergson",
   email: "contato@bergson.me",
   document: "123qweasd",
-};
-
-export type ProtocolCreateInput = {
-  name: string;
-  email: string;
-  document: string;
-  password: string;
-  lero: string;
-};
-
-export type ProtocolCreateOutput = {
-  id: string;
-  name: string;
-  email: string;
-  document: string;
+  financialManager: "72632748-83a6-4edb-b9c7-b1f0223530e6",
 };

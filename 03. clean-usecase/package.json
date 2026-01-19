@@ -13,6 +13,8 @@
     "lint:fix": "oxlint --fix"
   },
   "dependencies": {
+    "buefy": "^3.0.4",
+    "reka-ui": "^2.7.0",
     "vue": "^3.5.24"
   },
   "devDependencies": {

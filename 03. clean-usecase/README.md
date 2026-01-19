@@ -1,6 +1,6 @@
 - [x] Configurar oxlint e oxfmt
-- [ ] View dentro de outra view
+- [x] View dentro de outra view
+- [x] Adicionar LIB RekaUI
+- [x] Validação do fomulário deve ser reativa
 - [ ] Escrever testes unitários
-- [ ] Adicionar LIB RekaUI
-- [ ] Validação do fomulário deve ser reativa
 - [ ] Validação e reatividade deve ser compativel com yup e zod

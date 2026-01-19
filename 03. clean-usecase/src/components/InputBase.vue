@@ -7,14 +7,7 @@ const { errors = [] } = defineProps<{ errors: string[] }>();
 </script>
 
 <template>
-  <input v-model="model" v-bind="attrs" />
-  <div v-if="errors.length" class="error">
-    {{ errors[0] }}
-  </div>
+  <b-field label="Name" :type="errors.length ? 'is-danger' : null" :message="errors[0]">
+    <b-input v-model="model" v-bind="attrs" />
+  </b-field>
 </template>
-
-<style scoped>
-.error {
-  color: red;
-}
-</style>
