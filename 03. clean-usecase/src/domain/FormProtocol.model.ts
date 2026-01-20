@@ -68,13 +68,17 @@ export class FormProtocolModel extends Observable<ObservableEvents> {
     return isValid;
   }
 
-  async confirm() {
+  private async confirm() {
     if (this.validate()) {
       const input = this._values;
       this._isLoading = true;
       await this.notifyAll("submit", input);
       this._isLoading = false;
     }
+  }
+
+  handleCreateProtocol() {
+    this.confirm();
   }
 }
 

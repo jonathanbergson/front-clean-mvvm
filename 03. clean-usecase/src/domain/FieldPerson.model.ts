@@ -43,7 +43,7 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
     return isValid;
   }
 
-  async submit() {
+  private async submit() {
     this.person = null;
     await this.notifyAll("search", undefined);
 
@@ -53,6 +53,10 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
       await this.notifyAll("submit", input);
       this._isLoading = false;
     }
+  }
+
+  handleSubmit() {
+    this.submit();
   }
 }
 

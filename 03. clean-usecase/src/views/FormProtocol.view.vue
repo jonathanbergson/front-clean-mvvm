@@ -50,7 +50,7 @@ formProtocol.value.register("submit", async (input) => {
 
         <hr />
         <ButtonBase
-          @click="formProtocol.confirm()"
+          @click="formProtocol.handleCreateProtocol()"
           :disabled="formProtocol.isLoading"
           type="is-info"
         >

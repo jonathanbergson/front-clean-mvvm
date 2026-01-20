@@ -4,3 +4,4 @@
 - [x] Validação do fomulário deve ser reativa
 - [ ] Escrever testes unitários
 - [ ] Validação e reatividade deve ser compativel com yup e zod
+- [ ] Recriar fluxo RI (abertura, interessado, documentos, assinatura, revisao, pagamento, conclusao)

@@ -33,7 +33,7 @@ fieldPerson.value.register("submit", async (input) => {
         :disabled="fieldPerson.isLoading"
         placeholder="document"
       />
-      <ButtonBase @click="fieldPerson.submit()" :disabled="fieldPerson.isLoading">
+      <ButtonBase @click="fieldPerson.handleSubmit()" :disabled="fieldPerson.isLoading">
         Buscar pessoa
       </ButtonBase>
     </fieldset>
