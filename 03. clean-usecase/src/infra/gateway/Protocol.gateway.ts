@@ -32,13 +32,7 @@ export type ProtocolCreateOutput = {
   financialManager: string;
 };
 
-export class FakeProtocolGateway implements IProtocolGateway {
-  async create(): Promise<ProtocolCreateOutput> {
-    return FakeCreateOutput;
-  }
-}
-
-export const FakeCreateOutput: ProtocolCreateOutput = {
+export const MockProtocolCreateOutput: ProtocolCreateOutput = {
   id: "72632748-83a6-4edb-b9c7-b1f0223530e6",
   name: "Jonathan Bergson",
   email: "contato@bergson.me",

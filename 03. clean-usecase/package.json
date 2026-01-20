@@ -10,7 +10,10 @@
     "fmt": "oxfmt --check",
     "fmt:fix": "oxfmt",
     "lint": "oxlint",
-    "lint:fix": "oxlint --fix"
+    "lint:fix": "oxlint --fix",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "buefy": "^3.0.4",
@@ -21,6 +24,7 @@
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
+    "happy-dom": "^20.3.4",
     "oxfmt": "^0.24.0",
     "oxlint": "^1.39.0",
     "typescript": "~5.9.3",

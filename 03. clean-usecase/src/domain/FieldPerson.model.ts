@@ -5,8 +5,7 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
   private _isLoading = false;
   private _errors: FormErrors<Fields> = { document: [] };
   private _values: FormValues = { document: "" };
-
-  person: Person | null = null;
+  private _person: Person | null = null;
 
   get isLoading() {
     return this._isLoading;
@@ -18,6 +17,10 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
 
   get values() {
     return this._values;
+  }
+
+  get person() {
+    return this._person;
   }
 
   set values(newValues: FormValues) {
@@ -44,7 +47,7 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
   }
 
   private async submit() {
-    this.person = null;
+    this._person = null;
     await this.notifyAll("search", undefined);
 
     if (this.validate()) {
@@ -58,9 +61,13 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
   handleSubmit() {
     this.submit();
   }
+
+  setPerson(person: Person | null) {
+    this._person = person;
+  }
 }
 
-type Person = {
+export type Person = {
   id: string;
   name: string;
   email: string;

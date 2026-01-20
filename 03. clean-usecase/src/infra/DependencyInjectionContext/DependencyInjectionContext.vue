@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { FakeCreateOutput, ProtocolGateway } from "@/infra/gateway/Protocol.gateway";
+import { MockProtocolCreateOutput, ProtocolGateway } from "@/infra/gateway/Protocol.gateway";
 import { FetchHttpClient } from "@/infra/http/FetchHttpClient";
 import { useDependencyInjectionProvider } from "./useDependencyInjectionContext";
 import { CreateProtocolUseCase } from "@/domain/CreateProtocol.usecase";
@@ -13,7 +13,7 @@ const personHttpClient = new FakeHttpClient(FakePersonFindOutput);
 const personGateway = new PersonGateway(personHttpClient);
 const searchPersonUseCase = new SearchPersonUseCase(personGateway);
 
-const protocolHttpClient = new FakeHttpClient(FakeCreateOutput);
+const protocolHttpClient = new FakeHttpClient(MockProtocolCreateOutput);
 const protocolGateway = new ProtocolGateway(protocolHttpClient);
 const createProtocolUseCase = new CreateProtocolUseCase(protocolGateway);
 
