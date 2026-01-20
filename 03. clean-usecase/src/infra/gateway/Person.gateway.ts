@@ -1,4 +1,4 @@
-import { HttpMethods, IHttpClientAdapter } from "../http/IHttpClientAdapter";
+import { HttpMethods, IHttpClientAdapter } from "@/infra/http/IHttpClientAdapter";
 
 export default interface IPersonGateway {
   find(input: PersonFindInput): Promise<PersonFindOutput>;

@@ -1,9 +1,9 @@
 import { inject, provide, type InjectionKey } from "vue";
+import { CreateProtocolUseCase } from "@/domain/usecases/CreateProtocol.usecase";
+import { SearchPersonUseCase } from "@/domain/usecases/SearchPerson.usecase";
 import type { ProtocolGateway } from "@/infra/gateway/Protocol.gateway";
+import { PersonGateway } from "@/infra/gateway/Person.gateway";
 import type { FetchHttpClient } from "@/infra/http/FetchHttpClient";
-import { CreateProtocolUseCase } from "@/domain/CreateProtocol.usecase";
-import { PersonGateway } from "../gateway/Person.gateway";
-import { SearchPersonUseCase } from "@/domain/SearchPerson.usecase";
 
 type Context = {
   // Infra

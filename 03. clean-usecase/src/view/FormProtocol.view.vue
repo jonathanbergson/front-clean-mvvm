@@ -1,21 +1,13 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import ButtonBase from "@/components/ButtonBase.vue";
-import InputBase from "@/components/InputBase.vue";
-import { FormProtocolModel } from "@/domain/FormProtocol.model";
-import { useDependencyInjectionInject } from "@/infra/DependencyInjectionContext";
+import { ButtonBase, Container, InputBase } from "@/components";
 import FieldPersonView from "./FieldPerson.view.vue";
+import { useFormProtocolViewModel } from "./FormProtocol.viewmodel";
 
-const di = useDependencyInjectionInject();
-
-const formProtocol = ref(new FormProtocolModel());
-formProtocol.value.register("submit", async (input) => {
-  di?.createProtocolUseCase.execute(input);
-});
+const { formProtocol } = useFormProtocolViewModel();
 </script>
 
 <template>
-  <div class="container">
+  <Container>
     <form @submit.prevent>
       <fieldset>
         <legend>Create protocol:</legend>
@@ -50,7 +42,7 @@ formProtocol.value.register("submit", async (input) => {
 
         <hr />
         <ButtonBase
-          @click="formProtocol.handleCreateProtocol()"
+          @click="formProtocol.handleSubmit()"
           :disabled="formProtocol.isLoading"
           type="is-info"
         >
@@ -58,14 +50,5 @@ formProtocol.value.register("submit", async (input) => {
         </ButtonBase>
       </fieldset>
     </form>
-  </div>
+  </Container>
 </template>
-
-<style scoped>
-.container {
-  margin: 0 auto;
-  max-width: 320px;
-  padding: 24px;
-  width: 100%;
-}
-</style>

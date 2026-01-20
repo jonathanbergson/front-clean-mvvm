@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { MockProtocolCreateOutput, ProtocolGateway } from "@/infra/gateway/Protocol.gateway";
+import { CreateProtocolUseCase } from "@/domain/usecases/CreateProtocol.usecase";
+import { SearchPersonUseCase } from "@/domain/usecases/SearchPerson.usecase";
+import { FakeHttpClient } from "@/infra/http/FakeHttpClient";
 import { FetchHttpClient } from "@/infra/http/FetchHttpClient";
+import { FakePersonFindOutput, PersonGateway } from "@/infra/gateway/Person.gateway";
+import { MockProtocolCreateOutput, ProtocolGateway } from "@/infra/gateway/Protocol.gateway";
 import { useDependencyInjectionProvider } from "./useDependencyInjectionContext";
-import { CreateProtocolUseCase } from "@/domain/CreateProtocol.usecase";
-import { FakeHttpClient } from "../http/FakeHttpClient";
-import { FakePersonFindOutput, PersonGateway } from "../gateway/Person.gateway";
-import { SearchPersonUseCase } from "@/domain/SearchPerson.usecase";
 
 const httpClient = new FetchHttpClient();
 

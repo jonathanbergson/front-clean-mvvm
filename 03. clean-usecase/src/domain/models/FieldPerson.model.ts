@@ -1,9 +1,9 @@
 import Observable from "@/infra/Observable";
-import { FormErrors } from "@/infra/types/FormErrors.types";
+import { FormErrors } from "@/infra/types/FormErrors.type";
 
 export class FieldPersonModel extends Observable<ObservableEvents> {
   private _isLoading = false;
-  private _errors: FormErrors<Fields> = { document: [] };
+  private _errors: FormErrors<FormFields> = { document: [] };
   private _values: FormValues = { document: "" };
   private _person: Person | null = null;
 
@@ -36,7 +36,7 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
     if (this._values.document.length < 11)
       this._errors.document.push("Tamanho mínimo de 11 caracteres");
 
-    for (const key of Object.keys(this._errors) as Fields[]) {
+    for (const key of Object.keys(this._errors) as FormFields[]) {
       if (this._errors[key].length) {
         isValid = false;
         break;
@@ -78,7 +78,7 @@ type FormValues = {
   document: string;
 };
 
-type Fields = keyof FormValues;
+type FormFields = keyof FormValues;
 
 type ObservableEvents = {
   search: undefined;

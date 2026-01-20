@@ -1,8 +1,8 @@
 import { ref } from "vue";
-import { FieldPersonModel, type Person } from "@/domain/FieldPerson.model";
+import { FieldPersonModel, type Person } from "@/domain/models/FieldPerson.model";
 import { useDependencyInjectionInject } from "@/infra/DependencyInjectionContext";
 
-export function useFieldPersonViewModel(opts?: {
+export function useFieldPersonViewModel(options?: {
   onSearch?: () => void;
   onSubmit?: (person: Person | null) => void;
 }) {
@@ -10,13 +10,13 @@ export function useFieldPersonViewModel(opts?: {
   const fieldPerson = ref(new FieldPersonModel());
 
   fieldPerson.value.register("search", () => {
-    opts?.onSearch?.();
+    options?.onSearch?.();
   });
 
   fieldPerson.value.register("submit", async (input) => {
     const person = await di?.searchPersonUseCase.execute(input);
     fieldPerson.value.setPerson(person);
-    opts?.onSubmit?.(person ?? null);
+    options?.onSubmit?.(person ?? null);
   });
 
   return { fieldPerson };

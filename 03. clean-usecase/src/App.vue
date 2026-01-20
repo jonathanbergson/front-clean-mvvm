@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { DependencyInjectionContext } from "@/infra/DependencyInjectionContext";
-import FormProtocolView from "@/views/FormProtocol.view.vue";
+import FormProtocolView from "@/view/FormProtocol.view.vue";
 </script>
 
 <template>

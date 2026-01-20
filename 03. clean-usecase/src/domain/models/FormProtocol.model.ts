@@ -1,9 +1,9 @@
-import { FormErrors } from "@/infra/types/FormErrors.types";
+import { FormErrors } from "@/infra/types/FormErrors.type";
 import Observable from "@/infra/Observable";
 
 export class FormProtocolModel extends Observable<ObservableEvents> {
   private _isLoading = false;
-  private _errors: FormErrors<Fields> = {
+  private _errors: FormErrors<FormFields> = {
     name: [],
     email: [],
     document: [],
@@ -58,7 +58,7 @@ export class FormProtocolModel extends Observable<ObservableEvents> {
     if (!this._values.financialManager)
       this._errors.financialManager.push("Gerente financeiro obrigatorio");
 
-    for (const key of Object.keys(this._errors) as Fields[]) {
+    for (const key of Object.keys(this._errors) as FormFields[]) {
       if (this._errors[key].length) {
         isValid = false;
         break;
@@ -68,7 +68,7 @@ export class FormProtocolModel extends Observable<ObservableEvents> {
     return isValid;
   }
 
-  private async confirm() {
+  private async submit() {
     if (this.validate()) {
       const input = this._values;
       this._isLoading = true;
@@ -77,8 +77,8 @@ export class FormProtocolModel extends Observable<ObservableEvents> {
     }
   }
 
-  handleCreateProtocol() {
-    this.confirm();
+  handleSubmit() {
+    this.submit();
   }
 }
 
@@ -90,7 +90,7 @@ type FormValues = {
   financialManager: string;
 };
 
-type Fields = keyof FormValues;
+type FormFields = keyof FormValues;
 
 type ObservableEvents = {
   submit: FormValues;
