@@ -3,5 +3,13 @@
 - [x] Adicionar LIB RekaUI
 - [x] Validação do fomulário deve ser reativa
 - [ ] Escrever testes unitários
+  - [x] Models
+  - [x] UseCases
+  - [x] Gateways
+  - [ ] ViewModels
+  - [ ] Components
+  - [ ] Views
+  - [ ] Observable
+  - [ ] Https
 - [ ] Validação e reatividade deve ser compatível com yup e zod
 - [ ] Recriar fluxo RI (abertura, interessado, documentos, assinatura, revisão, pagamento, conclusão)
