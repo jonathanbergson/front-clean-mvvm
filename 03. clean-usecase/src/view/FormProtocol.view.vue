@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ButtonBase, Container, InputBase } from "@/components";
+import { useFormProtocolViewModel } from "@/domain/viewmodels/FormProtocol.viewmodel";
 import FieldPersonView from "./FieldPerson.view.vue";
-import { useFormProtocolViewModel } from "./FormProtocol.viewmodel";
 
 const { formProtocol } = useFormProtocolViewModel();
 </script>

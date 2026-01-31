@@ -12,7 +12,14 @@ export default defineConfig({
     },
   },
   test: {
-    environment: "happy-dom", // or 'jsdom', 'node'
-    include: ["src/**/*.unit.ts"],
+    environment: "happy-dom",
+    include: ["src/**/*.test.ts", "src/**/*.unit.ts"],
+    coverage: {
+      provider: "istanbul",
+      reporter: ["text", "lcov", "html"],
+      reportsDirectory: "coverage",
+      include: ["src/**/*.{ts,vue}"],
+      exclude: ["src/**/*.test.ts"],
+    },
   },
 });

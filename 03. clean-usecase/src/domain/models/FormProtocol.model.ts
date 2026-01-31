@@ -10,22 +10,13 @@ export class FormProtocolModel extends Observable<ObservableEvents> {
     presenter: [],
     financialManager: [],
   };
-  private _values: FormValues = new Proxy<FormValues>(
-    {
-      name: "",
-      email: "",
-      document: "",
-      presenter: "",
-      financialManager: "",
-    },
-    {
-      set: (target, prop: keyof FormValues, value) => {
-        target[prop] = value;
-        this.validate();
-        return true;
-      },
-    },
-  );
+  private _values: FormValues = {
+    name: "",
+    email: "",
+    document: "",
+    presenter: "",
+    financialManager: "",
+  };
 
   get isLoading() {
     return this._isLoading;
@@ -37,6 +28,11 @@ export class FormProtocolModel extends Observable<ObservableEvents> {
 
   get values() {
     return this._values;
+  }
+
+  set values(newValues: FormValues) {
+    this._values = newValues;
+    this.validate();
   }
 
   private validate() {
@@ -78,7 +74,7 @@ export class FormProtocolModel extends Observable<ObservableEvents> {
   }
 
   handleSubmit() {
-    this.submit();
+    return this.submit();
   }
 }
 

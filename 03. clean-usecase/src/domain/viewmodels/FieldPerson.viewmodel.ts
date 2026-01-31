@@ -15,7 +15,7 @@ export function useFieldPersonViewModel(options?: {
 
   fieldPerson.value.register("submit", async (input) => {
     const person = await di?.searchPersonUseCase.execute(input);
-    fieldPerson.value.setPerson(person);
+    fieldPerson.value.person = person;
     options?.onSubmit?.(person ?? null);
   });
 

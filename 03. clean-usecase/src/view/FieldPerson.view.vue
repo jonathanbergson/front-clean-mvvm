@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ButtonBase, InputBase } from "@/components";
-import { useFieldPersonViewModel } from "./FieldPerson.viewmodel";
+import { useFieldPersonViewModel } from "@/domain/viewmodels/FieldPerson.viewmodel";
 
 const model = defineModel({ default: "" });
 const props = defineProps<{ errors: string[]; type: string }>();

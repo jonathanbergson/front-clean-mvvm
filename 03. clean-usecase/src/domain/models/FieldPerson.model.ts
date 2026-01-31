@@ -19,20 +19,24 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
     return this._values;
   }
 
+  set values(newValues: FormValues) {
+    this._values = newValues;
+    this.validate();
+  }
+
   get person() {
     return this._person;
   }
 
-  set values(newValues: FormValues) {
-    this._values = newValues;
-    this.validate();
+  set person(newValues: Person | null) {
+    this._person = newValues;
   }
 
   private validate() {
     let isValid = true;
 
     this._errors.document = [];
-    if (!this._values.document) this._errors.document.push("Documento obrigatorio");
+    if (!this._values.document) this._errors.document.push("Documento obrigatório");
     if (this._values.document.length < 11)
       this._errors.document.push("Tamanho mínimo de 11 caracteres");
 
@@ -59,11 +63,7 @@ export class FieldPersonModel extends Observable<ObservableEvents> {
   }
 
   handleSubmit() {
-    this.submit();
-  }
-
-  setPerson(person: Person | null) {
-    this._person = person;
+    return this.submit();
   }
 }
 

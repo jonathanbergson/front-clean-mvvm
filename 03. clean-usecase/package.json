@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.1",
+    "@vitest/coverage-istanbul": "^4.0.17",
     "@vue/tsconfig": "^0.8.1",
     "happy-dom": "^20.3.4",
     "oxfmt": "^0.24.0",
