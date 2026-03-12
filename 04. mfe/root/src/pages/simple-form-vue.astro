@@ -1,0 +1,27 @@
+---
+// Página que carrega o MFE Simple Form Vue (iframe)
+const isDev = import.meta.env.DEV;
+const mfeUrl = isDev ? 'http://localhost:5001' : '/mfe/simple-form-vue/';
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Formulário - MFE Vue</title>
+  </head>
+  <body>
+    <header>
+      <a href="/">← Voltar ao host</a>
+    </header>
+    <main>
+      <iframe
+        src={mfeUrl}
+        title="Formulário simples - Vue MFE"
+        style="width: 100%; min-height: 80vh; border: none;"
+      />
+    </main>
+  </body>
+</html>

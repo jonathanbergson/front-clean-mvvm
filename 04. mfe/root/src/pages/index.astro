@@ -1,17 +1,27 @@
 ---
-
+// Host Astro - carrega os micro frontends
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>MFE Monorepo - Host</title>
+  </head>
+  <body>
+    <header>
+      <h1>Micro Frontends</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/simple-form-vue">Formulário (Vue)</a>
+      </nav>
+    </header>
+    <main>
+      <p>Bem-vindo ao host. Use o menu para acessar os micro frontends.</p>
+    </main>
+  </body>
 </html>
